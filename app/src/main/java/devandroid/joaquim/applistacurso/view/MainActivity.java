@@ -10,6 +10,7 @@ import devandroid.joaquim.applistacurso.model.Pessoa;
 public class MainActivity extends AppCompatActivity
 {
     Pessoa pessoa;
+    String dadosPessoas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -18,5 +19,16 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         pessoa = new Pessoa();
+        pessoa.setPrimeiroNome("Joaquim");
+        pessoa.setSobreNome("LOpes");
+        pessoa.setCurso("java");
+        pessoa.setTelefone("41992434693");
+
+        dadosPessoas = "Primeiro nome: ";
+        dadosPessoas += pessoa.getPrimeiroNome();
+        dadosPessoas += " Sobrenome " + pessoa.getSobreNome();
+        dadosPessoas += " Curso " + pessoa.getCurso();
+        dadosPessoas += " Telefone " + pessoa.getTelefone();
+
     }
 }
