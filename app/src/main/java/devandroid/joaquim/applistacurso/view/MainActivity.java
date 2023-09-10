@@ -46,14 +46,12 @@ public class MainActivity extends AppCompatActivity
         preferences = getSharedPreferences(NOME_PREFERENCES, 0);
         listaVip = preferences.edit();
 
-        controller = new PessoaController();
+        controller = new PessoaController(MainActivity.this);
         controller.toString();
 
         pessoa = new Pessoa();
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome", ""));
-        pessoa.setSobreNome(preferences.getString("sobrenome", ""));
-        pessoa.setCurso(preferences.getString("curso", ""));
-        pessoa.setTelefone(preferences.getString("telefone", ""));
+        controller.buscar(pessoa);
+
 
 
         editNome = findViewById(R.id.editNome); // cria o vinculo com os campos no layout
@@ -78,8 +76,7 @@ public class MainActivity extends AppCompatActivity
                 editTelefone.setText("");
                 editCurso.setText("");
 
-                listaVip.clear();
-                listaVip.apply();
+                controller.limpar();
             }
         });
 
@@ -100,12 +97,6 @@ public class MainActivity extends AppCompatActivity
                 pessoa.setTelefone(editTelefone.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo: " + pessoa.toString(), Toast.LENGTH_LONG).show();
-
-                listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
-                listaVip.putString("sobrenome", pessoa.getSobreNome());
-                listaVip.putString("curso", pessoa.getCurso());
-                listaVip.putString("telefone", pessoa.getTelefone());
-                listaVip.apply();
                 controller.salvar(pessoa);
             }
         });
