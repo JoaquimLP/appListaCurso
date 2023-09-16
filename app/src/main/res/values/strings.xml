@@ -8,4 +8,7 @@
     <string name="text_button_limpar">LIMPAR</string>
     <string name="text_button_salvar">SALVAR</string>
     <string name="text_button_finalizar">FINALIZAR</string>
+    <string name="text_selecione_um_curso">Selecione um curso</string>
+    <string name="spinner_curso" />
+    <string name="txt_selecione_um_curso">Selecione um Curso</string>
 </resources>
