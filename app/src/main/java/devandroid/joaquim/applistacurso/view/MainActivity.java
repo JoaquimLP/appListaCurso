@@ -10,8 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 import devandroid.joaquim.applistacurso.R;
+import devandroid.joaquim.applistacurso.controller.CursoController;
 import devandroid.joaquim.applistacurso.controller.PessoaController;
+import devandroid.joaquim.applistacurso.model.Curso;
 import devandroid.joaquim.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity
@@ -22,7 +26,10 @@ public class MainActivity extends AppCompatActivity
 
 
     Pessoa pessoa;
+    List<Curso> listaCurso;
     PessoaController controller;
+    CursoController cursoController;
+
     String dadosPessoas;
 
     // Classe que está no layout
@@ -48,6 +55,9 @@ public class MainActivity extends AppCompatActivity
 
         controller = new PessoaController(MainActivity.this);
         controller.toString();
+
+        cursoController = new CursoController();
+        listaCurso = cursoController.getListaCurso();
 
         pessoa = new Pessoa();
         controller.buscar(pessoa);
