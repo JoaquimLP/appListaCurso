@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity
 
 
     Pessoa pessoa;
-    List<Curso> listaCurso;
+    List<String> listaCurso;
     PessoaController controller;
     CursoController cursoController;
 
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity
     Button btnSalvar;
     Button btnFinalizar;
 
+    Spinner spinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         controller.toString();
 
         cursoController = new CursoController();
-        listaCurso = cursoController.getListaCurso();
+        listaCurso = cursoController.dadosParaSpinner();
 
         pessoa = new Pessoa();
         controller.buscar(pessoa);
@@ -68,10 +72,15 @@ public class MainActivity extends AppCompatActivity
         editSobrenome = findViewById(R.id.editSobrenome);
         editCurso = findViewById(R.id.editCurso);
         editTelefone = findViewById(R.id.editTelefone);
+        spinner = findViewById(R.id.spinner);
 
         btnLimpar = findViewById(R.id.btnLimpar);
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cursoController.dadosParaSpinner());
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        spinner.setAdapter(adapter);
 
         editNome.setText(pessoa.getPrimeiroNome());
         editSobrenome.setText(pessoa.getSobreNome());
